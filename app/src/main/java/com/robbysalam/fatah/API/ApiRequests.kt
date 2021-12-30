@@ -14,8 +14,8 @@ import retrofit2.Response
 
 class ApiRequests(private val context: Context, private val listener: ResponseListener) {
     /*
-     this methode will retun Jason array for   API respose . Api have Response in JSON Arry
-     so this method use
+     Metode ini akan mengembalikan array Json untuk respons API. Api memiliki respon di JSON array
+     metode yang di gunakan =
      */
     fun getApiRequestMethodarray(pageno: Int, action: String) {
 
@@ -29,22 +29,11 @@ class ApiRequests(private val context: Context, private val listener: ResponseLi
             override fun onResponse(call: Call<JsonArray>, resp: Response<JsonArray>) {
 
                 /*
-                     check respose and Response  body is not null
+                     check respon
                      */
                 if (resp != null && resp.body() != null) {
-
-                    /*
-                   ifResponse or Response body null then set the error
-                   set the ListItemClickListener interface Success methode
-
-                    */
-
                     listener.onSuccess(resp.body()!!.toString(), action)
                 } else {
-                    /*
-                    if Response or Response body null then set the error
-                     set the ListItemClickListener interface  error methode
-                     */
                     listener.onError(resp.message())
                 }
 
@@ -52,9 +41,6 @@ class ApiRequests(private val context: Context, private val listener: ResponseLi
 
             override fun onFailure(call: Call<JsonArray>, t: Throwable) {
                 t.printStackTrace()
-                /*
-                     set the ListItemClickListener interface  error methode
-                     */
                 listener.onError(t.message ?: "")
             }
         })
@@ -63,7 +49,7 @@ class ApiRequests(private val context: Context, private val listener: ResponseLi
 
     /*
 
-   call releated  images APi
+   memanggil API gambar yang berkaitan
 
    */
     fun getApiRelatedImage(id: String) {
@@ -77,17 +63,12 @@ class ApiRequests(private val context: Context, private val listener: ResponseLi
             override fun onResponse(call: Call<JsonObject>, resp: Response<JsonObject>) {
 
                 /*
-                     check respose and Response  body is not null
+                     check respos
                      */
                 if (resp != null && resp.body() != null) {
 
-
                     listener.onSuccess(resp.body()!!.toString(), id)
                 } else {
-                    /*
-                    if Response or Response body null then set the error
-                     set the ListItemClickListener interface  error methode
-                     */
                     listener.onError(resp.message())
                 }
 
@@ -95,9 +76,6 @@ class ApiRequests(private val context: Context, private val listener: ResponseLi
 
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
                 t.printStackTrace()
-                /*
-                     set the ListItemClickListener interface  error methode
-                     */
                 listener.onError(t.message ?: "")
             }
         })

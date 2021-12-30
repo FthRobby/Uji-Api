@@ -46,10 +46,6 @@ class ImageDetail_Activity : AppCompatActivity(), ResponseListener, ListItemClic
         setContentView(R.layout.activity_image_detail)
         setSupportActionBar(toolbar)
 
-        /*
-        get the data from previous activity that we sent
-        ImagesUrl_Model Onject
-         */
         if (intent != null) {
             mImagesUrl_Model = intent.extras!!.getSerializable("list") as ImagesUrl_Model?
 
@@ -58,7 +54,7 @@ class ImageDetail_Activity : AppCompatActivity(), ResponseListener, ListItemClic
 
         iniView()
         mImagesUrl_ModelList.clear()
-        ///calling the funcation for API
+        /// memnaggil function untuk API
         loadMoreData(mImagesUrl_Model?.photo_id ?: "")
 
 
@@ -93,8 +89,8 @@ class ImageDetail_Activity : AppCompatActivity(), ResponseListener, ListItemClic
         if (mUtils!!.isWifi(this)) {
 
             /*
-            calling related images APi
-            initialize  and call to API using retrofit .
+            memanggil apigambar yang terkait
+            inisialisasai dan memanggilnya menggunakan retrofit
              */
 
             ApiRequests(this@ImageDetail_Activity, this).getApiRelatedImage(str_msg)
@@ -109,7 +105,7 @@ class ImageDetail_Activity : AppCompatActivity(), ResponseListener, ListItemClic
     fun setdata() {
 
         /*
-        set the data from ImagesUrl_Model  to textview and imagesview
+        atur data dari ImagesUrl_Model menuju textview dan imagesview
          */
         tv_userName!!.text = mImagesUrl_Model!!.username
         if (mImagesUrl_Model!!.description.equals("null") || mImagesUrl_Model!!.description!!.isEmpty()) {
@@ -120,7 +116,7 @@ class ImageDetail_Activity : AppCompatActivity(), ResponseListener, ListItemClic
 
 
         /*
-        set  image url to Imageview using  Glide lib
+        atur url gambar ke Imageview menggunakna  Glide lib
          */
         img_Photo?.let {
             Glide.with(this).load(mImagesUrl_Model?.regular)
@@ -132,7 +128,7 @@ class ImageDetail_Activity : AppCompatActivity(), ResponseListener, ListItemClic
         }
 
         /*
-        set  image url to User profile Imageview using  Glide lib
+        atur url gambar ke User profile Imageview menggunakan  Glide lib
          */
 
         img_userprofile?.let {
@@ -147,12 +143,6 @@ class ImageDetail_Activity : AppCompatActivity(), ResponseListener, ListItemClic
     }
 
 
-    /*
-  its ResponseListener interface method
-  its have two methods these are
-  1= onSuccess
-  2=onError
-   */
     override fun onSuccess(`object`: String, action: String) {
 
         mImagesUrl_ModelList.clear()
@@ -171,12 +161,7 @@ class ImageDetail_Activity : AppCompatActivity(), ResponseListener, ListItemClic
         loadBar?.visibility = View.GONE
     }
 
-    /*
- its ListItemClickListener interface method
- its deal with RecyclerView item click
-   and set data to images view and textview
 
-  */
     override fun onListItemClick(position: Int, action: String) {
         mImagesUrl_Model = mImagesUrl_ModelList[position]
         setdata()
@@ -186,11 +171,7 @@ class ImageDetail_Activity : AppCompatActivity(), ResponseListener, ListItemClic
     fun OnDetailMenuClick(view: View) {
         when (view.id) {
             R.id.img_Photo ->
-                /*
-                 start new activity for
-                Checking  full screen image with zooming and Apply  feature
-                and pass image url to another activity to showing image .
-                 */
+
                 startActivity(
                     Intent(this@ImageDetail_Activity, FullImage_Activity::class.java)
                         .putExtra("imgeurl", mImagesUrl_Model!!.full)

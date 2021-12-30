@@ -22,8 +22,7 @@ class FullImage_Activity : AppCompatActivity() {
         setContentView(R.layout.activity_full_image_)
 
         /*
-        get the data from previous activity that we sent
-         get umage url
+         mendapatkan data dari aktivitas sebelumnya dengan mengirim url
          */
         if (intent != null) {
             imgeurl = intent.getStringExtra("imgeurl")
@@ -31,8 +30,7 @@ class FullImage_Activity : AppCompatActivity() {
         img_wallpaper = findViewById(R.id.img_wallpaper)
 
         /*
-        set  image url to Imageview using  Glide lib
-         this image view have zooming feature
+        megatur url gambar menuju imageview menggunakan glide, disini gambar bisa di zoom
          */
         Glide.with(this).load(imgeurl)
             .thumbnail(0.5f)
@@ -42,7 +40,7 @@ class FullImage_Activity : AppCompatActivity() {
     }
 
     /*
-   click listener  for  set the image to screen  background using wallpaperManager
+    mengatur gabar agar bisa dijadikan wallpaper background
     */
     fun OnApplyclick(view: View) {
         wallpaperManager = WallpaperManager.getInstance(this@FullImage_Activity)

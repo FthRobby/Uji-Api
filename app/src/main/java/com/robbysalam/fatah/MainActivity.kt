@@ -50,9 +50,9 @@ class MainActivity : AppCompatActivity(), ResponseListener, ListItemClickListene
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         mUtils = Utils(this@MainActivity)
-        //initialize views
+        //inisialisasi views
         iniView()
-        ///calling the funcation for API
+        ///memanggil funciton untuk API
         loadMoreData(1, "firsttime")
 
     }
@@ -72,11 +72,11 @@ class MainActivity : AppCompatActivity(), ResponseListener, ListItemClickListene
         mImage_RecyclerView.layoutManager = mLayout_recyclerView
 
         /*
-            pull to refrsh the  call to server and realod data from server.
+            tarik dari atas ke bawah untuk merefresh data gambar dari server.
          */
         mSwipeRefreshLayout!!.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener {
             loadBar!!.visibility = View.VISIBLE
-            /// call api for more images
+            /// memanggil aAPI untuk gambar lainya
             loadMoreData(pageno, "load_more")
 
             mSwipeRefreshLayout!!.isRefreshing = false
@@ -85,11 +85,10 @@ class MainActivity : AppCompatActivity(), ResponseListener, ListItemClickListene
         })
 
         /*
-        check nestted scrollvew reached bottom of recycleview or not
-         */
+        periksa scrollview bersarang mencapai bagian bawah recyclerview atau tidak
+        */
 
         nestedSV.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
-            /// check NestedScrollView reached end  position or not if its end position load more images and  show loader
             if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight) {
                 if (!loadMore) {
 
@@ -97,7 +96,6 @@ class MainActivity : AppCompatActivity(), ResponseListener, ListItemClickListene
                     loadMore = true
                     pageno = pageno + 1
 
-                    /// call api for more images
                     loadMoreData(pageno, "load_more")
 
                 }
@@ -107,10 +105,8 @@ class MainActivity : AppCompatActivity(), ResponseListener, ListItemClickListene
 
     private fun loadMoreData(page: Int, str_msg: String) {
 
-        //check internet connection is available ot not if not than show the toast message to  user
         if (mUtils!!.isWifi(this)) {
 
-            ///initialize  and call to API using retrofit .
             ApiRequests(this@MainActivity, this).getApiRequestMethodarray(page, str_msg)
 
         } else {
@@ -119,13 +115,6 @@ class MainActivity : AppCompatActivity(), ResponseListener, ListItemClickListene
         }
     }
 
-
-    /*
-   its ResponseListener interface method
-   its have two methods these are
-   1= onSuccess
-   2=onError
-    */
     override fun onSuccess(`object`: String, action: String) {
 
         loadMore = false
@@ -154,14 +143,6 @@ class MainActivity : AppCompatActivity(), ResponseListener, ListItemClickListene
 
     }
 
-
-    /*
-     its ListItemClickListener interface method
-     its deal with RecyclerView item click
-     start new activit and pass data to another activity using Serializable
-     passing full object of ImagesUrl_Model from list
-
-      */
     override fun onListItemClick(position: Int, action: String) {
 
 
@@ -174,15 +155,8 @@ class MainActivity : AppCompatActivity(), ResponseListener, ListItemClickListene
 
     }
 
-    /*
-    click listener  for change RecyclerView view Orientation
-     */
     fun OnSwitchclick(view: View) {
 
-        /*
-         check RecyclerView view Orientation if its  gridview than  change
-         it in listview
-         */
         if (isvertical) {
             swithlayout!!.setImageResource(R.drawable.ic_view_list_black)
             isvertical = false
@@ -195,9 +169,7 @@ class MainActivity : AppCompatActivity(), ResponseListener, ListItemClickListene
 
     }
 
-    /*
-    this funcatin  change the  RecyclerView  Orientation (ListView or Grid gridview)
-     */
+
     fun switchList(isVertical: Boolean) {
         if (isVertical) {
             val specManager = LinearLayoutManager(this)

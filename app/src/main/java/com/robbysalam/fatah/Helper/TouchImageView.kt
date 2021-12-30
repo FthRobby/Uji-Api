@@ -11,7 +11,7 @@ import android.view.View
 import android.widget.ImageView
 
 /*
-this class use for image  pitch too zoom . we declare this in XML layout
+    class ini dipakai agar gambar bisa di zoom dengan cara di cubit
  */
 @SuppressLint("AppCompatCustomView")
 class TouchImageView : ImageView {
@@ -95,7 +95,7 @@ class TouchImageView : ImageView {
 
             imageMatrix = matrix
             invalidate()
-            true // indicate event was handled
+            true
         }
     }
 
@@ -177,9 +177,6 @@ class TouchImageView : ImageView {
         viewWidth = View.MeasureSpec.getSize(widthMeasureSpec)
         viewHeight = View.MeasureSpec.getSize(heightMeasureSpec)
 
-        //
-        // Rescales image on rotation
-        //
         if (oldMeasuredHeight == viewWidth && oldMeasuredHeight == viewHeight
             || viewWidth == 0 || viewHeight == 0
         )

@@ -8,7 +8,7 @@ import android.widget.Toast
 class Utils(internal var mContext: Context) {
 
 
-    //check the internet connection  avaiable or not
+    //memeriksa apakah terkoneksi internet atau tidak
 
 
     fun isWifi(context: Context): Boolean {

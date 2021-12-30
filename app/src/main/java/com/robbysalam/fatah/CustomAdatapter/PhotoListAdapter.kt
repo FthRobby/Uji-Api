@@ -35,7 +35,7 @@ class PhotoListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
 
-        //set image from url using  Glide
+        //set gambar dari url menggunakan Glide
         Glide.with(context).load(list[position].small)
             .thumbnail(0.5f)
             .placeholder(R.drawable.ic_placeholder)
@@ -43,9 +43,6 @@ class PhotoListAdapter(
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(holder.image)
 
-        /*
-        set  interface  ListItemClickListener funcation  item click  Listener for detail of photo
-         */
         holder.lytParent.setOnClickListener {
             listener.onListItemClick(
                 holder.adapterPosition,

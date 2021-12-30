@@ -13,7 +13,7 @@ object JsonParser {
 
 
     /*
-    All  wallpaer parsing from photo API response
+    menampilkan wallpaper dari API poto
      */
     fun json2ImageList(jsonObject: String): List<ImagesUrl_Model> {
 
@@ -29,11 +29,10 @@ object JsonParser {
 
             if (jsonArray!!.length() > 0) {
                 for (i in 0 until jsonArray.length()) {
-
                     /*
-           Parse images  from Photo API
-            call the methode that parse and return the Pojo model and save in list
-             */
+                    Menampilkan Gambar dari API
+                    panggil metode yang menguraikan dan mengembalikan model POJO dan menyimpan dalam daftar
+                     */
                     val mImagesUrl_Model = json2ImageUrl(jsonArray.getJSONObject(i))
 
                     mImageModelslist.add(mImagesUrl_Model)
@@ -53,9 +52,9 @@ object JsonParser {
     }
 
     /*
-          Parse images  from Photo  Json onject
-          and return Photo pojo class
-            */
+    Parsing gambar dari objek Photo Json dan
+    kembalikan kelas Photo pojo
+    */
     fun json2ImageUrl(ProdDetail_obj: JSONObject): ImagesUrl_Model {
 
 
@@ -126,7 +125,7 @@ object JsonParser {
 
 
     /*
-   All  wallpaer parsing from Related  API response
+   Menguraikan semua wallpaper dari respon API Terkait
     */
     fun json2Related_ImageList(jsonObject: String): List<ImagesUrl_Model> {
 
@@ -149,10 +148,6 @@ object JsonParser {
             if (jsonArray.length() > 0) {
                 for (i in 0 until jsonArray.length()) {
 
-                    /*
-           Parse images  from Related API
-            call the methode that parse and return the Pojo model and save in list
-             */
                     mImageModelslist.addAll(json2RelatedImageUrl(jsonArray.getJSONObject(i)))
 
 
@@ -172,9 +167,8 @@ object JsonParser {
     }
 
     /*
-          Parse images  from Photo  Json onject
-          and return Photo pojo model List
-            */
+    menampilkan gambar dari object foto berupa json
+    */
     fun json2RelatedImageUrl(ProdDetail_obj: JSONObject): List<ImagesUrl_Model> {
 
 
@@ -199,11 +193,6 @@ object JsonParser {
                     if (ProdDetail_obj.has("description"))
                         mImagesUrl_Model_.description = ProdDetail_obj.getString("description")
 
-
-                    /*
-               start Image url parsing
-               check image url in Url Json ojbject parse and set  photo
-                */
                     if (object_url.has("thumb"))
                         mImagesUrl_Model_.thumb = object_url.getString("thumb")
 
@@ -217,9 +206,6 @@ object JsonParser {
                         mImagesUrl_Model_.full = object_url.getString("full")
 
 
-                    /*
-               start User info parsing
-                               */
                     if (objectUser.has("id"))
                         mImagesUrl_Model_.user_id = objectUser.getString("id")
 

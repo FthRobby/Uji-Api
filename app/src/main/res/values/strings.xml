@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Unsplahs Random Image API</string>
+    <string name="nointernet">check your Internet</string>
+    <string name="title_activity_image_detail_">Detail</string>
+    <string name="related">Related</string>
+    <string name="setasawallpaper">set as a wallpaper</string>
+</resources>
